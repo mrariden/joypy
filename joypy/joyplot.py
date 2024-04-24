@@ -463,10 +463,12 @@ def _joyplot(data,
         num_subgroups = len(group)
 
         if hist:
-            # matplotlib hist() already handles multiple subgroups in a histogram
-            a.hist(group, label=sublabels, bins=bins, color=color,
-                   range=[min(global_x_range), max(global_x_range)],
-                   edgecolor=linecolor, zorder=group_zorder, **kwargs)
+            for j, subgroup in enumerate(group): 
+                element_color = _get_color(i, num_axes, j, num_subgroups)
+                # matplotlib hist() already handles multiple subgroups in a histogram
+                a.hist(subgroup, label=sublabels, bins=bins, color=element_color,
+                    range=[min(global_x_range), max(global_x_range)],
+                    edgecolor=linecolor, zorder=group_zorder, **kwargs)
         else:
             for j, subgroup in enumerate(group):
 
